@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState } from 'react'
 import"./LoginStyle.css"
 import "./image-removebg-preview.png";
@@ -8,7 +8,8 @@ const Login = () => {
     const[Username,setUsername]=useState("");
     const[passworda,setPassword]=useState("");
     const[data,setdata]=useState([]);
-    const[res,setres]=useState("");
+    const [message,setmessage]=useState("");
+    
     const navigate=useNavigate();
     
 const handleUsername=(e)=>{
@@ -26,7 +27,7 @@ const handlesubmit=(e)=>{
     fetch(`http://localhost:8080/utilisateur/${Username}`).then(res=>res.json()).then((result)=>setdata(result));
 
     if (data.length===0)
-    {console.log("aucun ")}
+    {console.log("aucun utlisateur avec ce email ")}
     else
     {
        if( data.motdepasse===passworda)
@@ -42,7 +43,7 @@ const handlesubmit=(e)=>{
       }));
         navigate("/dashboard")
     }
-       else {console.log("password incorrecte");}
+       else {setmessage("password incorrecte");}
     }
     const user = localStorage.getItem("userSession");
 
@@ -64,10 +65,11 @@ const handlesubmit=(e)=>{
             <input type="text" placeholder='Email' onChange={handleUsername} value={Username} />
             <input type="password" placeholder='Password' value={passworda} onChange={(e)=>{setPassword(e.target.value)}}/>
             <a href='#'>Forget your password?</a>
+            <p>{message}</p>
             <button>Login</button>
             <button onClick={(e)=>{navigate("/inscription")}}>S'inscrire</button>
             <img className='fit-picture' src={require('./image-removebg-preview.png')} alt='logo'/>
-            <h2>{res}</h2>
+            
 
 
         </form>

@@ -22,9 +22,9 @@ const Footer = () => {
           <div className="col-md-6 col-lg-4">
             <h5 className="text-uppercase mb-4">Follow Us</h5>
             <ul className="list-unstyled">
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Instagram</a></li>
+              <li><a href="https://www.facebook.com/dali.magri.1/">Facebook</a></li>
+              
+              <li><a href="https://www.instagram.com/dali_magri/">Instagram</a></li>
             </ul>
           </div>
         </div>

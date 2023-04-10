@@ -43,7 +43,8 @@ const Eventt = () => {
 
         )}
 
-          
+          <br/>
+          <br/>
       <Footer/>
       
     </div>

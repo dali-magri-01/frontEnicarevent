@@ -26,7 +26,7 @@ const Inscription = () => {
             headers:{"Content-type":"application/json"},
             body:JSON.stringify(utilisateur)
         }).then(()=>{
-            console.log("utilisateur ajouter");
+            console.log("utilisateur ajoute");
             navigate("/");
         })
     }

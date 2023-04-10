@@ -10,6 +10,7 @@ import './App.css';
 import Inscription from './Inscrire/Inscription';
 import Login from './login/Login';
 import Apropos from './acceuille/page3/Apropos';
+import Parametre from './parametre/Parametre';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
    <Route path="/dashboard" element={<Main/>}/>
    <Route  path="/service" element={<Eventt/>}/>
    <Route path="/apropos" element={<Apropos/>}/>
+   <Route path="/parametre" element={<Parametre/>}/>
+
    </Routes>
    
    </BrowserRouter>

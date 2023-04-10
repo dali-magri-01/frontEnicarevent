@@ -50,12 +50,10 @@ return (
        
       </ul>
       <form class="d-flex">
-        
+        <button type="button" class="btn btn-outline-info me-2 "onClick={(e)=>{navigate("/parametre")}}>Profile</button>
         <button class="btn btn-danger" type="button" onClick={handleLogout}>Déconnexion</button>
       </form>
-      {/* <form class="d-flex">
-        <button type="button" class="btn btn-danger "style={{marginLeft:"700px"}}></button>
-      </form> */}
+      
     
      
     </div>

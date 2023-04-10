@@ -1,9 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './card.css';
+import ModalSpect from '../modalSpectateurs/ModalSpect';
+
+
 
 
 const Card = ({event}) => {
-  return (
+  
+  const [isDisabled, setIsDisabled] = useState(false);
+  const[data,setdata]=useState([]);
+  const user = JSON.parse(localStorage.getItem("userSession"));
+
+    useEffect(()=>{
+      fetch(`http://localhost:8080/spectateurs/idevenement/${event.id}`).then(res=>res.json()).then((result)=>{setdata(result)});
+       
+  },[])
+//   useEffect(()=>{
+//     console.log (data);
+//     const personExists = data.find((p) => p.idUtilisateur === user.userId);
+    
+
+     
+// },[])
+
+
+
+
+  const HandleSubmit =(e)=>{
+    e.preventDefault();
+    console.log (data);
+    const idevenement=event.id;
+    const idUtlisateur=user.userId;
+    const nomSpectateur= user.nomS;
+    const prenomSpectateur=user.prenomS;
+    const emailSpectateur=user.emailS
+    const Spectateur={idUtlisateur,nomSpectateur,prenomSpectateur,emailSpectateur,idevenement};
+    console.log(Spectateur);
+    fetch("http://localhost:8080/spectateurs/add",{
+        method:"POST",
+        headers:{"Content-type":"application/json"},
+        body:JSON.stringify(Spectateur)
+    }).then(()=>{
+        alert("Spectateur ajouter");
+        setIsDisabled(true);
+    })
+}
+  
+// event.id
+    return (
     <div className="card">
       <img src={event.pathImage} alt="" className="card-img-top" />
       <div className="card-body">
@@ -13,8 +57,11 @@ const Card = ({event}) => {
         <h5>Nom club : {event.nomclub}</h5><br/>
 
         <h5 className="card-title">Nombre de place restant :{event.nbrPlace}</h5><br/>
-        <a href="#" className="btn btn-primary"style={{position:"relative",left:"125px"}}>Reserver une place</a>
-        {/* naamloha modal wela button doub yenzel 3leha el nombre decrementi w 1 wel button tetbloka w les information te3ou no5dhohom m session eli bech tkoun local strorage*/}
+        
+        { user.nomclubS===event.nomclub?<ModalSpect event={event}/>
+        :<button href="#" className="btn btn-primary" disabled={isDisabled} style={{position:"relative",left:"125px"}}onClick={HandleSubmit}>Reserver une place</button>}
+      
+      
       </div>
     </div>
   );

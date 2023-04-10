@@ -4,20 +4,13 @@ import './Modal.css';
 
 
 const Modal = () => {
-  const [nomclub,setnomclub]=useState('');
+  // const [nomclub,setnomclub]=useState('');
 
 
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
-    setIsOpen(true);
-    setnomclub(user.nomclubS);
-    console.log(nomclub);
-    
-    
-    
-   
-    
+    setIsOpen(true);  
   };
 
   const handleCloseModal = () => {
@@ -67,7 +60,7 @@ const Modal = () => {
   
   const HandleSubmit =(e)=>{
     e.preventDefault();
-    
+    const nomclub=user.nomclubS;
     const event={titre,description,nbrPlace,date,pathImage,nomclub};
     console.log(event);
     fetch("http://localhost:8080/Event/add",{
@@ -84,7 +77,7 @@ const Modal = () => {
 
   return (
     <div>
-      <button className='btn1' onClick={handleOpenModal}>Ajouter un evenement</button>
+      <button className='btn1' onClick={handleOpenModal}style={{marginTop:"20px",marginLeft:"20px"}}>Ajouter un evenement</button>
       {isOpen && (
         <div className="modal-overlay">
           <div className="modalz">
