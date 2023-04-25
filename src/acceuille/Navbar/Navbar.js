@@ -28,7 +28,8 @@ useEffect(()=>{
 
 return (
     <div>
-         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+         <nav class="navbar navbar-expand-sm  "  style={{backgroundColor:"#196B9B"}}>
+         
   <div class="container-fluid">
     <a href class="navbar-brand">
       <img src={require('./logoEnicarEvent.png')} alt="Avatar Logo" style={{width:"150px",marginRight:"50px",marginBottom:"-2px"}} class="rounded-pill"/> 

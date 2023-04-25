@@ -4,7 +4,7 @@ import './Modal.css';
 
 
 const Modal = () => {
-  // const [nomclub,setnomclub]=useState('');
+  // const [nomClub,setnomClub]=useState('');
 
 
   const [isOpen, setIsOpen] = useState(false);
@@ -60,18 +60,28 @@ const Modal = () => {
   
   const HandleSubmit =(e)=>{
     e.preventDefault();
-    const nomclub=user.nomclubS;
-    const event={titre,description,nbrPlace,date,pathImage,nomclub};
+    const nomClub=user.nomclubS;
+    const event={titre,description,nbrPlace,date,pathImage,nomClub};
     console.log(event);
-    fetch("http://localhost:8080/Event/add",{
+    const formData  = new FormData();
+    formData.append("titre",titre);
+    formData.append("description",description);
+    formData.append("nbrPlace",nbrPlace);
+    formData.append("date",date);
+    formData.append("nomClub",nomClub);
+    formData.append("image",pathImage);
+    fetch("http://localhost:8080/Event/add/multipart",{
         method:"POST",
-        headers:{"Content-type":"application/json"},
-        body:JSON.stringify(event)
-    }).then(()=>{
-        console.log("Event ajouter");
-        setIsOpen(false);
-       
-    })
+        headers:{ 'Accept': 'application/json, application/xml, text/plain, text/html'
+        },
+        body: formData
+    }).then(
+      ()=>{
+        setIsOpen(false)
+        window.location.reload()
+      }
+    )
+   
 }
 
 
@@ -83,14 +93,16 @@ const Modal = () => {
           <div className="modalz">
             <button className="modal-close " onClick={handleCloseModal}>X</button>
             <h2>Ajouter un evenement</h2>
+            <br/>
             <form onSubmit={HandleSubmit}>
             <input type="text" class="form-control" value={titre} placeholder="Tite de l evenement" onChange={handleTite}/><br/>
             <input type="text" class="form-control" value={description} placeholder="description de l'evenement"onChange={handledescription} /><br/>
             <input type="number" class="form-control" value={nbrPlace} placeholder="nombre de place limiter de l evenement" onChange={handlenombre}/><br/>
             <input type="date" class="form-control" value={date} placeholder="date de l'evenement" onChange={handledate}/><br/>
             <input className='btn' type="file" onChange={handleImageChange} />
-            {image && <img src={image} alt="Uploaded Imaged" style={{width:"400px",height:"200px"}}/>}
-            <br/><br/>  <button class="btn btn-danger" type="submit" >Envoyer</button>
+            <div className='text-center'>
+            {image && <img className='me-5' src={image} alt="Uploaded Imaged" style={{width:"400px",height:"200px"}}/>}
+            <br/><br/> <button class="btn btn-danger " type="submit" >Envoyer</button></div> 
             </form>
           </div>
         </div>

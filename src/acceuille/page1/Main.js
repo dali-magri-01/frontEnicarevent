@@ -24,13 +24,15 @@ const Main = () => {
     
 },[])
 
-const myListShort = data.slice(0, 4);
+const myListShort = data.slice(0, 3);
 
   return (
     <div>
      <Navbar />
-     <Jumbotron user={user}/><br/>
+     
      <Carousel/>
+     <Jumbotron user={user}/><br/>
+     
      <div className='container shadow'>
      { myListShort?.length>0?(
             <div className='container'>

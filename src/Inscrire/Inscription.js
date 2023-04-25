@@ -12,14 +12,14 @@ const Inscription = () => {
     const[role,setrole]=useState('etudiant');
     const navigate=useNavigate();
 
-    const [nomclub,setnomClub]=useState("");
+    const [nomClub,setnomClub]=useState("");
     
 
     
 
     const HandleSubmit =(e)=>{
         e.preventDefault();
-        const utilisateur={nom,prenom,email,classe,role,motdepasse,nomclub};
+        const utilisateur={nom,prenom,email,classe,role,motdepasse,nomClub};
         console.log(utilisateur);
         fetch("http://localhost:8080/utilisateur/add",{
             method:"POST",
@@ -58,7 +58,7 @@ const Inscription = () => {
             <option>Representant du club</option>
             </select>
             { role==="Representant du club"&&
-            <input type='text' value={nomclub} placeholder='Nom du club' onChange={(e)=>{setnomClub(e.target.value)}}/>}
+            <input type='text' value={nomClub} placeholder='Nom du club' onChange={(e)=>{setnomClub(e.target.value)}}/>}
             
             <input type="password" placeholder='Mot de passe' value={motdepasse}
             onChange={(e)=>{setmotdepasse(e.target.value)}} required/>
